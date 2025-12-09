@@ -1,0 +1,44 @@
+import axios from "@/api/axiosInstant.js";
+import {getResponse} from "@/api/endPoint.js";
+
+
+export const getHostsAPI = () => axios.get('/host').then(res=> {
+    return Object.values(res.data.host_list)
+})
+
+export const addHostAPI = (payload)=>{
+    return axios.post("/host", payload).then(res => {
+        if(res.status === 201) {
+            return {success: true}
+        }
+        return {success: false};
+    })
+}
+
+export const updateHostAPI = async (server, payload) => {
+    return axios.put(`/host`, {...payload, hostUid: server.uid}).then(res => {
+        if(res.status === 200) {
+            return {...res, success: true};
+        }
+        return {success: false};
+
+    })
+}
+
+export const deleteHostAPI = async (server) => {
+    return axios.delete(`/host`, {data:{hostUid: server.uid}}).then(res => {
+        if(res.status === 200) {
+            return {...res, success: true};
+        }
+        return {success: false};
+
+    })
+}
+
+export const getHostVersionAPI = async (server) => {
+    let payload = {
+        task: "getenv"
+    }
+    const response = await getResponse(server, payload)
+    return {result: response, success: true};
+}
