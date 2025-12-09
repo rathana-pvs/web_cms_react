@@ -1,13 +1,16 @@
 import React from "react";
 import DropdownMenu from "./DropdownMenu.jsx";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setOpenHostVersion} from "@/features/domain/host/hostSlice.js";
+import CubridConfig from "./contents/CubridConfig.jsx";
+import {nanoid} from "nanoid";
+import {addTab, setActiveTabKey} from "@/shared/slice/tabSlice.js";
 
 
 const CONFIG_PARAM_CONTENT = [
-    // {label: "Edit Cubrid Config", screen: CubridConfig, key: nanoid(8)},
-    // {label: "Edit Broker Config", screen: CubridBrokerConfig, key: nanoid(8)},
-    // {label: "Cubrid Manager Config", screen: CMConfig, key: nanoid(8)},
+    {title: "Edit Cubrid Config", type: "cubrid_config"},
+    {title: "Edit Broker Config", type: "broker_config"},
+    {title: "Cubrid Manager Config", type: "cm_config"},
 ]
 
 
@@ -16,6 +19,8 @@ const CONFIG_PARAM_CONTENT = [
 const Action = ()=>{
 
     const dispatch = useDispatch();
+    const {activeHost} = useSelector(state => state.host);
+    const {tabs} = useSelector(state => state.tab);
     const menus = [
         {
             label: 'Dashboard Config',
@@ -30,7 +35,19 @@ const Action = ()=>{
             label: 'Properties'
         },
         {
-            label: 'Config Params'
+            label: 'Config Params',
+            disabled: !activeHost.type,
+            children: CONFIG_PARAM_CONTENT.map(param=>{
+                return {label:param.title,
+                        onClick:()=>{
+                            dispatch(addTab({
+                                key: nanoid(4),
+                                ...param
+                            }
+                            ))
+                        }
+                };
+            })
         },
 
     ];

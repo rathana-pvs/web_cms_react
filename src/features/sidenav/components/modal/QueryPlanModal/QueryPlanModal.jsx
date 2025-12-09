@@ -110,7 +110,7 @@ const QueryPlanModal = ()=>{
                         <Col span={24}>
                             <Form.Item
                                 label="Query Plan Name"
-                                name="backupid"
+                                name="query_id"
                                 rules={[{required: true, message: "Required"}]}
                             >
                                 <Input readOnly={queryPlanModal.type === "edit"}  placeholder="Query Plan Name"/>
@@ -119,7 +119,7 @@ const QueryPlanModal = ()=>{
                         <Col span={24}>
                             <Form.Item
                                 label="DB Username"
-                                name="dbuser"
+                                name="username"
                                 rules={[{required: true, message: "Required"}]}
                             >
                                 <Input readOnly={queryPlanModal.type === "edit"}  placeholder="DB Username"/>
@@ -128,7 +128,7 @@ const QueryPlanModal = ()=>{
                         <Col span={24}>
                             <Form.Item
                                 label="Password"
-                                name="dbpass"
+                                name="userpass"
                                 rules={[{required: true, message: "Required"}]}
                             >
                                 <Input placeholder="Password"/>
@@ -139,7 +139,7 @@ const QueryPlanModal = ()=>{
                         <Col span={24}>
                             <Form.Item
                                 label="Peroid Type"
-                                name="period_type"
+                                name="period"
                             >
                                 <Select
                                     onChange={(value)=>setPeriodsType(value)}
@@ -148,7 +148,7 @@ const QueryPlanModal = ()=>{
                                             { value: 'Monthly', label: 'Monthly' },
                                             {value: "Weekly", label: "Weekly"},
                                             { value: 'Daily', label: 'Daily' },
-                                            {value: "Specific", label: "Specific"}
+                                            {value: "One", label: "Specific"}
                                         ]
                                     }
                                 />

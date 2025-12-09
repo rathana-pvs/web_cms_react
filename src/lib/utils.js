@@ -37,3 +37,31 @@ export const buildTree = (...dataSets) => {
 
     return tree;
 };
+
+export const extractParam = (lines)=>{
+    const result = {};
+    const uniqueKeys = new Set();
+    let currentSection = null;
+
+    lines.forEach(line => {
+        const trimmed = line.trim();
+
+        // Detect section headers like [broker] or [%query_editor]
+        const sectionMatch = trimmed.match(/^\[(%?[\w_]+)]$/);
+        if (sectionMatch) {
+            currentSection = sectionMatch[1];
+            result[currentSection] = {};
+            return;
+        }
+
+        // Handle key=value lines
+        if (currentSection && trimmed.includes('=') && !trimmed.startsWith("#")) {
+            const [key, value] = trimmed.split('=');
+            const cleanKey = key.trim();
+            result[currentSection][cleanKey] = value.trim();
+            uniqueKeys.add(cleanKey);
+        }
+    });
+
+    return [result, uniqueKeys];
+}
