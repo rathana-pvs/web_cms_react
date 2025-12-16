@@ -3,7 +3,7 @@ import { Table } from 'antd';
 import { useSelector } from "react-redux";
 import styles from '../styles/DatabaseVolumeTable.module.css';
 import {getResponse} from "@/api/endPoint.js";
-import {getDatabasesAPI} from "@/features/domain/database/databaseAPI.js";
+import {getDatabasesAPI, getDBSpaceAPI} from "@/features/domain/database/databaseAPI.js";
 import globalSlice from "@/shared/slice/globalSlice.js";
 import {nanoid} from "nanoid";
 
@@ -97,20 +97,16 @@ export default function DatabaseVolumeTable(props) {
         if (resDB.success) {
             const allRequest = resDB.result
                 ?.filter(res => res.status === "active")
-                .map(res => getResponse(activeHost, {
-                    task: "dbspaceinfo",
-                    dbname: res.dbname,
-                }));
+                .map(res => getDBSpaceAPI(activeHost, res));
+
+
 
             const responses = await Promise.all(allRequest);
-
-            for (const result of responses) {
-                if (result.status === "success") {
+            for (const {result} of responses) {
                     let permanent = "-";
                     let temporary = "-";
                     let activeLog = "-";
                     let archiveLog = "-";
-
                     for (const spaceInfo of result.spaceinfo) {
                         if (spaceInfo.type === "PERMANENT") {
                             permanent = getVolumeColumn(result, spaceInfo.type);
@@ -131,7 +127,7 @@ export default function DatabaseVolumeTable(props) {
                         activeLog,
                         archiveLog,
                     });
-                }
+
             }
         }
 

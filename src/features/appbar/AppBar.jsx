@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Action from "./components/Action.jsx";
 import File from "./components/File.jsx";
 import {setLogout} from "../auth/authSlice.js";
+import Help from "@/features/appbar/components/Help.jsx";
 
 const AppBar = () => {
     const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const AppBar = () => {
                 <File/>
                 {/*/!*<ToolMenu/>*!/*/}
                 <Action/>
+                <Help/>
 
                 {/*<HelpMenu/>*/}
                 {/*{[t("header.title.file"), t("header.title.tools"), t("header.title.actionbar"), t("header.title.help")].map((item, index) => (*/}

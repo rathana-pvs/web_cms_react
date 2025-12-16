@@ -8,7 +8,7 @@ import { getHostFormat } from "@/lib/treeFormat.js";
 import { setActiveHost, setHosts } from "@/features/domain/host/hostSlice.js";
 import HorizontalResize from "@/components/common/HorizontalResize/HorizontalResize.jsx";
 import {setBuffering} from "@/shared/slice/globalSlice.js";
-import {getHostsAPI} from "@/features/domain/host/hostAPI.js";
+import {getHostsAPI, hostLogin} from "@/features/domain/host/hostAPI.js";
 import HostMenu from "@/features/sidenav/components/menus/HostMenu.jsx";
 
 
@@ -33,8 +33,11 @@ const SideNavHost = () => {
     }, []);
 
     const handleClick = (host) => {
-        dispatch(setActiveHost(host));
-        dispatch(addTab(host));
+        hostLogin(host).then(() => {
+            dispatch(setActiveHost(host));
+            dispatch(addTab(host));
+        })
+
     };
 
     const onChangeHeight = (h) => {

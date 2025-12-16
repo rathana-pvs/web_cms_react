@@ -29,7 +29,7 @@ export const getDatabaseFormat =(item)=>{
         key: nanoid(4),
         title: item.dbname,
         type: "database",
-        icon: `fa-database ${item.status === "inactive" ? "warning" : "success"}`
+        icon: `fa-database ${item.status === "inactive" ? "inactive__icon" : "active__icon"}`,
         // icon: <i className={`fa-regular fa-database ${item.status === "inactive" ? "warning" : "success"}`}/>
     }
 }
@@ -38,7 +38,7 @@ export const getBrokerFormat =(item)=>{
     return {
         key: nanoid(4),
         title: `${item.name} (${item.port})`,
-        icon: "fa-folder-gear",
+        icon: `fa-folder-gear ${item.state === "ON" ? "active__icon" : "inactive__icon"}`,
         ...item,
         type: "broker"
     }

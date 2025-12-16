@@ -2,6 +2,10 @@ import axios from "@/api/axiosInstant.js";
 import {getResponse} from "@/api/endPoint.js";
 
 
+export const hostLogin = async (host) => {
+    await axios.post(`/${host.uid}/cms-auth/login`) // revoke session/token
+}
+
 export const getHostsAPI = () => axios.get('/host').then(res=> {
     return Object.values(res.data.host_list)
 })

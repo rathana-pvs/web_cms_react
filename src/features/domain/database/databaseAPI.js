@@ -2,39 +2,46 @@ import { getResponse } from "@/api/endPoint.js";
 import { isNotEmpty } from "@/lib/utils.js";
 import axios from '/src/api/axiosInstant.js'
 
-export const getDatabasesAPI = async (server) => {
-    let payload = {
-        task: "startinfo"
-    }
-    const response = await getResponse(server, payload);
-    // const responseD = await axios.get("/api/database", {hostId: server.uid});
+const getListDatabase = (data)=>{
     let databases = []
-
-    if (response.success) {
-        if (isNotEmpty(response.activelist)) {
-            for (let db of response.activelist[0].active) {
-                databases.push({ ...db, status: "active" });
-            }
+    if (isNotEmpty(data.activelist)) {
+        for (let db of data.activelist.active) {
+            databases.push({ ...db, status: "active" });
         }
-        if (isNotEmpty(response.dblist)) {
-            for (let db of response.dblist[0].dbs) {
-                if (!databases.some(obj => obj.dbname === db.dbname)) {
-                    databases.push({ ...db, status: "inactive" });
-                }
-
-            }
-        }
-        return { result: databases, success: true };
     }
-
-    return { success: false };
+    if (isNotEmpty(data.dblist)) {
+        for (let db of data.dblist.dbs) {
+            if (!databases.some(obj => obj.dbname === db.dbname)) {
+                databases.push({ ...db, status: "inactive" });
+            }
+        }
+    }
+    return  databases
 }
 
-export const getDBSpaceAPI = async (server, data) => {
-    let payload = {
-        task: "dbspaceinfo",
-        ...data
-    }
-    const response = await getResponse(server, payload)
-    return { result: response, success: true };
+
+export const getDatabasesAPI = async (host) => {
+    const url = `/${host.uid}/database/start-info`
+    const {data} = await axios.get(url);
+    const databases = getListDatabase(data);
+    return { result: databases, success: true };
+}
+
+export const getDBSpaceAPI = async (host, db) => {
+    const url = `/${host.uid}/database/volume-info/${db.dbname}`
+    const {data} = await axios.get(url);
+    return { result: data, success: true };
+}
+
+export const startDatabaseAPI = async (host, db) => {
+    const url = `/${host.uid}/database/start/${db.dbname}`
+    const {data} = await axios.post(url);
+    const databases = getListDatabase(data);
+    return { result: databases, success: true };
+}
+export const stopDatabaseAPI = async (host, db) => {
+    const url = `/${host.uid}/database/stop/${db.dbname}`
+    const {data} = await axios.post(url);
+    const databases = getListDatabase(data);
+    return { result: databases, success: true };
 }

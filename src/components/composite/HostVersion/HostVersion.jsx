@@ -4,8 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 
 // import styles from "@/components/common/modal/dialog.module.css"
 import styles from './HostVersion.module.css'
-import {getHostVersionAPI} from "@/features/domain/host/hostAPI.js";
+
 import {setOpenHostVersion} from "@/features/domain/host/hostSlice.js";
+import {getHostVersionAPI} from "@/features/domain/CMSConfig/CMSConfigAPI.js";
+
 
 
 export default function (){

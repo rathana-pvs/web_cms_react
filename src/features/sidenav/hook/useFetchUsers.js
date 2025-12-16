@@ -16,7 +16,8 @@ const useFetchUsers = (node)=>{
             const database = databases.find(item => item.key === node.parentId)
             getDBUsersAPI(activeHost, {dbname: database.title}).then(res => {
                 if(res.success){
-                    const newUser = res.result.map(item => getUserFormat(item, node))
+                    const newUser = res.result.map(item => ({...getUserFormat(item, node),
+                        databaseId: database.key}))
                     dispatch(setDBUsers([...users, ...newUser]))
                 }
             })

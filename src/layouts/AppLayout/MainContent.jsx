@@ -15,7 +15,6 @@ const MainContent = () => {
     };
 
     const remove = (targetKey) => {
-        console.log(targetKey);
         
         if(tabs.length > 1) {
             const activeKey = tabs.at(-2).key;
@@ -36,7 +35,6 @@ const MainContent = () => {
 
         }
     };
-
     return (
             <Tabs
                 className={styles.main__container}

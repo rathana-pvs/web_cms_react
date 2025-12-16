@@ -10,6 +10,7 @@ import HostConnection from "@/components/composite/HostConnection/HostConnection
 import HostVersion from "@/components/composite/HostVersion/HostVersion.jsx";
 import DeleteConfirmAction from "@/components/common/modal/DeleteConfirmAction/DeleteConfirmAction.jsx";
 import ErrorModal from "@/components/common/modal/ErrorModal/ErrorModal.jsx";
+import AboutCubrid from "@/features/appbar/components/modal/AboutCubrid.jsx";
 
 
 
@@ -26,6 +27,7 @@ export const AppLayout = ()=>{
                     <HostConnection/>
                 </Layout>
                 <HostVersion/>
+                <AboutCubrid/>
             </Layout>
 
     )

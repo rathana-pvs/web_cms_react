@@ -2,7 +2,7 @@ import axios from './axiosInstant.js'
 
 export const requestCMAPI = (server, payload)=>{
     const {uid} = server;
-    return axios.post(`/cms-https-client/forward`, {...payload, hostUid: uid});
+    return axios.post(`${uid}/cms-https-client/forward`, {...payload});
 }
 
 export const revokeLogin = async (server) => {

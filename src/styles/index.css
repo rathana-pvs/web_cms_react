@@ -143,10 +143,13 @@ hr {
         font-size: calc(var(--app-font-size) * 0.95);
     }
 }
-
-
-
-
 .folder__icon{
-    color: var(--app-folder-color);
+    color: var(--app-color-folder);
+}
+
+.active__icon{
+    color: var(--app-color-primary);
+}
+.inactive__icon{
+    color: var(--app-color-inactive);
 }

@@ -32,5 +32,6 @@
     --app-color-bg-component: #ffffff;
     /* Borders */
     --app-border-radius-sm: 4px;
-    --app-folder-color: rgb(255, 211, 77);
+    --app-color-folder: rgb(255, 211, 77);
+    --app-color-inactive: #F79A19
 }

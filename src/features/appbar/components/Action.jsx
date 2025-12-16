@@ -20,16 +20,9 @@ const Action = ()=>{
 
     const dispatch = useDispatch();
     const {activeHost} = useSelector(state => state.host);
-    const {tabs} = useSelector(state => state.tab);
     const menus = [
         {
             label: 'Dashboard Config',
-        },
-        {
-            label: 'Server Version',
-            onClick: ()=>{
-                dispatch(setOpenHostVersion(true));
-            }
         },
         {
             label: 'Properties'

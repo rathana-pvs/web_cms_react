@@ -3,6 +3,7 @@ import Editor from '@monaco-editor/react';
 import {useDispatch, useSelector} from "react-redux";
 import { getAllSystemParamAPI} from '../../appBarAPI';
 import {setBuffering} from "@/shared/slice/globalSlice.js";
+import {getSystemParamAPI} from "@/features/domain/CMSConfig/CMSConfigAPI.js";
 
 
 
@@ -19,7 +20,7 @@ const CubridConfig = () => {
         // activeRef.current = activePanel
         dispatch(setBuffering(true))
 
-        getAllSystemParamAPI(activeHost, {confname: "cubrid.conf"}).then(({result}) => {
+        getSystemParamAPI(activeHost, "cubrid.conf").then(({result}) => {
             setCode(result.join("\r\n"));
         }).finally(()=>{
             dispatch(setBuffering(false))

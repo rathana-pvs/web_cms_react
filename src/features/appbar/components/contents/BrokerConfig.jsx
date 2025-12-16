@@ -5,6 +5,7 @@ import {nanoid} from "nanoid";
 import EditableTable from "@/components/common/table/EditableTable";
 import {extractParam} from "@/lib/utils.js";
 import {getAllSystemParamAPI} from "@/features/appbar/appBarAPI.js";
+import {getSystemParamAPI} from "@/features/domain/CMSConfig/CMSConfigAPI.js";
 
 
 const BrokerConfig = () => {
@@ -28,7 +29,7 @@ const BrokerConfig = () => {
         // const content = contents.find(res => res.key === activePanel)
         // const server = servers.find(res => res.uid === content.uid)
         // setServer(server);
-        getAllSystemParamAPI(activeHost, {confname: "cubrid_broker.conf"}).then(res=>{
+        getSystemParamAPI(activeHost, "cubrid_broker.conf").then(res=>{
             if(res.success){
                 const data = extractParam(res.result)
                 // const cols = Object.keys(data[0]).map(col=>{

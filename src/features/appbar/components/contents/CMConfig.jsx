@@ -4,6 +4,7 @@ import Editor from '@monaco-editor/react';
 import {useDispatch, useSelector} from "react-redux";
 import {setBuffering} from "@/shared/slice/globalSlice.js";
 import {getAllSystemParamAPI} from "@/features/appbar/appBarAPI.js";
+import {getSystemParamAPI} from "@/features/domain/CMSConfig/CMSConfigAPI.js";
 
 
 const CodeEditorPage = () => {
@@ -18,7 +19,7 @@ const CodeEditorPage = () => {
     useEffect(() => {
         // activeRef.current = activePanel
         dispatch(setBuffering(true))
-        getAllSystemParamAPI(activeHost, {confname: "cm.conf"}).then(res => {
+        getSystemParamAPI(activeHost, "cm.conf").then(res => {
             dispatch(setBuffering(false))
             console.log(res)
             if(res.success) {

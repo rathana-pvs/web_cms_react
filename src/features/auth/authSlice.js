@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import action from "@/features/appbar/components/Action.jsx";
 
 const initialState = {
     user: {},
@@ -20,6 +21,7 @@ const authSlice = createSlice({
             state.isAuthenticated = true
         },
         setLogout: (state) => {
+            console.log(state)
             state.user = null
             state.isAuthenticated = false
             localStorage.removeItem("token")

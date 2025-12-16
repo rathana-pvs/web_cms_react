@@ -13,7 +13,7 @@ import useFetchDatabaseSpace from "@/features/sidenav/hook/useFetchDatabaseSpace
 import {buildTree} from "@/lib/utils.js";
 import {setBuffering, setDeleteConfirm} from "@/shared/slice/globalSlice.js";
 import {addTab} from "@/shared/slice/tabSlice.js";
-import useFetchJobAutomation from "@/features/sidenav/hook/useFetchJobAutomation.jsx";
+import useFetchJobAutomation from "@/features/sidenav/hook/useFetchJobAutomation.js";
 import BackupMenu from "@/features/sidenav/components/menus/BackupMenu.jsx";
 import QueryMenu from "@/features/sidenav/components/menus/QueryMenu.jsx";
 import BackupModal from "@/features/sidenav/components/modal/BackupModal/BackupModal.jsx";
@@ -22,12 +22,23 @@ import DeleteConfirmAction from "@/components/common/modal/DeleteConfirmAction/D
 import {deleteBackupInfoAPI} from "@/features/sidenav/sideNavAPI.js";
 import useBackupAction from "@/features/sidenav/hook/useBackupAction.js";
 import QueryPlanModal from "@/features/sidenav/components/modal/QueryPlanModal/QueryPlanModal.jsx";
+import DatabaseMenu from "@/features/sidenav/components/menus/DatabaseMenu.jsx";
+import BrokerMenu from "@/features/sidenav/components/menus/BrokerMenu.jsx";
+import useFetchBroker from "@/features/sidenav/hook/useFetchBroker.js";
+import useFetchLog from "@/features/sidenav/hook/useFetchLog.js";
+import UsersMenu from "@/features/sidenav/components/menus/UsersMenu.jsx";
+import CreateDBUser from "@/features/sidenav/components/modal/CreateDBUser.jsx";
+import UserMenu from "@/features/sidenav/components/menus/UserMenu.jsx";
 
 
 const menus = [
     {type: "backup", Screen: BackupMenu},
     {type: "backup_item", Screen: BackupItemMenu},
     {type: "query", Screen: QueryMenu},
+    {type: "database", Screen: DatabaseMenu},
+    {type: "broker", Screen: BrokerMenu},
+    {type: "users", Screen: UsersMenu},
+    {type: "user", Screen: UserMenu},
 ]
 
 
@@ -39,6 +50,7 @@ const SideNavTree = ()=>{
     const {activeHost} = useSelector(state => state.host)
     const {users} = useSelector(state => state.user)
     const [subDatabase, setSubDatabase] = useState([])
+    const [subLogger, setSubLogger] = useState([]);
     const [menu, setMenu] = useState({open: false});
     const [hook, setHook] = useState({});
     const [openDeleteConfirm, setOpenDeleteConfirm] = useState({open: false});
@@ -46,6 +58,9 @@ const SideNavTree = ()=>{
     const DBSpaceInfo = useFetchDatabaseSpace(hook)
     const jobAutomation = useFetchJobAutomation(hook)
     const {refreshBackupInfo} = useBackupAction()
+    const {SQLLog, brokerLogFiles} = useFetchBroker(hook)
+    const {logBrokerFolder, accessLogs, errorLogs,
+        adminLogs, logManager, logServerFolder, logInfo} = useFetchLog(hook)
 
     const treeItems = ["DB", "Broker", "Log"]
     const dispatch = useDispatch();
@@ -62,9 +77,10 @@ const SideNavTree = ()=>{
             // console.log(buildTree(databases, subDatabase, users))
             return buildTree(databases, subDatabase, users, DBSpaceInfo, jobAutomation)
         }else if(activeTree === 1){
-            return buildTree(brokers)
+            return buildTree(brokers, SQLLog, brokerLogFiles)
         }else if(activeTree === 2){
-            // return buildTree(subLogger, subBrokerLog)
+            return buildTree(subLogger, logBrokerFolder, accessLogs,
+                errorLogs, adminLogs, logManager, logServerFolder, logInfo)
         }
     }
 
@@ -79,7 +95,6 @@ const SideNavTree = ()=>{
                     res.result.forEach(db=>{
                         const dbFormat = getDatabaseFormat(db)
                         newDB.push(dbFormat)
-
                         newSubDB.push([
                             {
                                 key: nanoid(4),
@@ -114,6 +129,29 @@ const SideNavTree = ()=>{
                     dispatch(setBrokers(res.result.map(broker=>getBrokerFormat(broker))))
                 }
             })
+
+            const subLog = [
+                {
+                    // ...getTemplateFormat(activeServer),
+                    key: nanoid(4),
+                    title: "Broker",
+                    type: "log_broker",
+                    icon: "fa-folder-gear",
+                },
+                {
+                    key: nanoid(4),
+                    title: "Manager",
+                    type: "log_manager",
+                    icon: "fa-computer",
+                },
+                {
+                    key: nanoid(4),
+                    title: "Server",
+                    type: "log_server",
+                    icon: "fa-server"
+                }
+            ]
+            setSubLogger(subLog)
         }
 
     },[activeHost])
@@ -147,9 +185,6 @@ const SideNavTree = ()=>{
     const onCloseModal = ()=>{
         setOpenDeleteConfirm({open: false});
     }
-
-
-
     const renderManu = ()=>{
         const {Screen, open, ...e} = menu
         if(Screen){
@@ -162,9 +197,9 @@ const SideNavTree = ()=>{
 
     }
 
-
     return (
         <div className={styles.layout}>
+            <CreateDBUser/>
             <BackupModal/>
             <QueryPlanModal/>
             <DeleteConfirmAction {...openDeleteConfirm} onClose={onCloseModal} onOK={onDeleteModal}/>
