@@ -99,6 +99,7 @@ const SideNavTree = ()=>{
                             {
                                 key: nanoid(4),
                                 parentId: dbFormat.key,
+                                databaseId: dbFormat.key,
                                 title: "Users",
                                 icon: "fa-users",
                                 type:"users",

@@ -8,6 +8,12 @@ import Action from "./components/Action.jsx";
 import File from "./components/File.jsx";
 import {setLogout} from "../auth/authSlice.js";
 import Help from "@/features/appbar/components/Help.jsx";
+import {setProfile} from "@/features/appbar/appBarSlice.js";
+import AboutCubrid from "@/features/appbar/components/modal/AboutCubrid.jsx";
+import Profile from "@/features/appbar/components/modal/Profile.jsx";
+import UpdatePassword from "@/features/appbar/components/modal/UpdatePassword.jsx";
+import DeleteConfirmAction from "@/components/common/modal/DeleteConfirmAction/DeleteConfirmAction.jsx";
+import {deleteAuthUserAPI} from "@/features/auth/authAPI.js";
 
 const AppBar = () => {
     const dispatch = useDispatch();
@@ -30,8 +36,11 @@ const AppBar = () => {
         {
             key: "profile",
             label: (<>
-                <UserDeleteOutlined /> Logout
+                <UserDeleteOutlined /> Profile
             </>),
+            onClick: () => {
+                dispatch(setProfile(true));
+            }
         },
         {
             key: "logout",
@@ -45,6 +54,7 @@ const AppBar = () => {
             }
         },
     ];
+
     return (
         <div className={styles.layout}>
             <div className={styles.layout__menu}>
@@ -82,6 +92,11 @@ const AppBar = () => {
                 </div>
 
             </div>
+
+            <AboutCubrid/>
+            <Profile/>
+            <UpdatePassword/>
+
         </div>
     )
 

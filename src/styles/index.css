@@ -153,3 +153,18 @@ hr {
 .inactive__icon{
     color: var(--app-color-inactive);
 }
+.error {
+    color: var(--app-color-error);
+}
+button{
+    height: 32px !important;
+}
+button.error{
+    background-color: var(--app-color-error);
+    color: white;
+}
+button.error:hover{
+    background-color: var(--app-color-error) !important;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}

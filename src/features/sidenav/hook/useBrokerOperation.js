@@ -25,14 +25,13 @@ const useBrokerOperation = ()=>{
     }
 
     const stopBroker = async (broker) => {
-        console.log("stopBroker", broker);
         const response = await stopBrokerAPI(activeHost, broker);
         if(response.success){
             const newBrokers = brokers.map(item=>{
                 if(item.key === broker.key){
                     return {
                         ...item,
-                        state: "ON",
+                        state: "OFF",
                         icon: "fa-folder-gear inactive__icon",
                     }
                 }

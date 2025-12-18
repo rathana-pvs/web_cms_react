@@ -86,7 +86,7 @@ const CreateDBUser = () => {
     useEffect(() => {
         if(createDBUser.open){
             form.resetFields()
-
+            console.log(createDBUser)
             const db = databases.find(res=>res.key === createDBUser.node.databaseId)
             setDatabase(db)
             updateUsers(activeHost, db).then(()=>{
@@ -104,7 +104,7 @@ const CreateDBUser = () => {
     }, [createDBUser]);
 
     const getRenderGroups = ()=>{
-        console.log(users)
+        console.log(database)
         return users.filter(res=>{
             if(res.databaseId === database.key){
                 if(createDBUser.type === "edit"){

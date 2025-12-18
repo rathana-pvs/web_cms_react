@@ -6,17 +6,13 @@ import {setAboutCubrid} from "@/features/appbar/appBarSlice.js";
 
 
 
-export default function (){
-
-
+const AboutCubrid =()=>{
     const {aboutCubrid} = useSelector(state => state.appBar);
     const dispatch = useDispatch();
-
 
     const handleClose = () => {
         dispatch((setAboutCubrid(false)))
     }
-
 
     return (
         <Modal
@@ -59,3 +55,4 @@ export default function (){
     );
 };
 
+export default AboutCubrid;

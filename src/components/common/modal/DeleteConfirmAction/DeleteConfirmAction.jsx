@@ -2,7 +2,6 @@ import {Button, Modal} from "antd";
 
 
 const DeleteConfirmAction = ({onClose, onOK, ...res})=>{
-    
     return (
         <Modal
             width={460}
