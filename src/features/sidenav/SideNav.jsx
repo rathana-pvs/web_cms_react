@@ -10,6 +10,12 @@ import SideNavHost from "./components/SideNavHost.jsx";
 import SideNavTree from "./components/SideNavTree.jsx";
 import VerticalResize from "@/components/common/VerticalResize/VerticalResize.jsx";
 import {useSelector} from "react-redux";
+import ManageDBUser from "@/features/sidenav/components/modal/ManageDBUser.jsx";
+import BackupModal from "@/features/sidenav/components/modal/BackupModal/BackupModal.jsx";
+import QueryPlanModal from "@/features/sidenav/components/modal/QueryPlanModal/QueryPlanModal.jsx";
+import ParamDump from "@/features/sidenav/components/modal/ManageDatabase/ParamDump.jsx";
+import PlanDump from "@/features/sidenav/components/modal/ManageDatabase/PlanDump.jsx";
+import OptimizeDB from "@/features/sidenav/components/modal/ManageDatabase/OptimizeDB.jsx";
 
 
 const SideNav = () => {
@@ -17,6 +23,15 @@ const SideNav = () => {
     const {activeHost} = useSelector(state => state.host);
     return (
         <div style={{display: "flex", width:width, height:"inherit"}}>
+            <ManageDBUser/>
+            <BackupModal/>
+            <QueryPlanModal/>
+            <ParamDump/>
+            <PlanDump/>
+            <OptimizeDB/>
+
+
+
         <div className={styles.layout}>
             <div className={styles.top__menu}>
                 <div className={styles.mode__view}>

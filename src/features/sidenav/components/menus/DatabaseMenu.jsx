@@ -10,6 +10,7 @@ import {setBuffering} from "@/shared/slice/globalSlice.js";
 import {stopDatabaseAPI} from "@/features/domain/database/databaseAPI.js";
 import {data} from "framer-motion/m";
 import useDatabaseOperation from "@/features/sidenav/hook/useDatabaseOperation.js";
+import {setOptimizeDB, setParamDump, setPlanDump} from "@/features/sidenav/sideNavSlice.js";
 
 const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
     // const {activeServer, databases} = useSelector(state => state.treeReducer);
@@ -50,9 +51,9 @@ const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
                     label: "Database Optimize",
                     key: nanoid(4),
                     disabled: node.status === "active",
-                    // onClick: () => {
-                    //     dispatch(setOptimizeDB({open: true, node}));
-                    // }
+                    onClick: () => {
+                        dispatch(setOptimizeDB({open: true, node}));
+                    }
                 },
                 {
                     label: "Compact Database",
@@ -119,7 +120,7 @@ const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
             label: "Database Info",
             key: nanoid(4),
             icon: <ReloadOutlined />,
-            disabled: true,
+            disabled: false,
             children: [
                 {
                     label: "Lock Information",
@@ -135,17 +136,17 @@ const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
                     label: "Plan Dump",
                     key: nanoid(4),
                     disabled: node.status === "inactive",
-                    // onClick: ()=>{
-                    //     dispatch(setPlanDump({open: true, node}));
-                    // }
+                    onClick: ()=>{
+                        dispatch(setPlanDump({open: true, node}));
+                    }
                 },
                 {
                     label: "Param Dump",
                     key: nanoid(4),
                     disabled: node.status === "inactive",
-                    // onClick: ()=>{
-                    //     dispatch(setParamDump({open: true, node}));
-                    // }
+                    onClick: ()=>{
+                        dispatch(setParamDump({open: true, node}));
+                    }
                 },
                 {
                     label: "OID Navigator",

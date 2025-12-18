@@ -19,3 +19,15 @@ export const getHostVersionAPI = async (host) => {
 
     return {result: data, success: true};
 }
+
+export const getParamDumpAPI = async (host, database) => {
+    const url = `/${host.uid}/cms-config/param-dump/${database.dbname}`
+    const {data} = await axios.get(url)
+    return {result: data, success: true};
+}
+
+export const getPlanDumpAPI = async (host, database) => {
+    const url = `/${host.uid}/cms-config/stat-dump/${database.dbname}`
+    const {data} = await axios.get(url)
+    return {result: data, success: true};
+}

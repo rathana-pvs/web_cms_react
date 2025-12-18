@@ -12,7 +12,7 @@ import {setDBUsers} from "@/features/domain/user/userSlice.js";
 const { Option } = Select;
 const { TextArea } = Input;
 
-const CreateDBUser = () => {
+const ManageDBUser = () => {
     const {activeHost} = useSelector(state => state.host);
     const {databases} = useSelector(state => state.database);
     const {users} = useSelector(state => state.user);
@@ -79,10 +79,6 @@ const CreateDBUser = () => {
             dispatch(setDBUsers([...oldUsers, ...newUsers]))
         }
     }
-
-
-
-
     useEffect(() => {
         if(createDBUser.open){
             form.resetFields()
@@ -104,7 +100,6 @@ const CreateDBUser = () => {
     }, [createDBUser]);
 
     const getRenderGroups = ()=>{
-        console.log(database)
         return users.filter(res=>{
             if(res.databaseId === database.key){
                 if(createDBUser.type === "edit"){
@@ -202,4 +197,4 @@ const CreateDBUser = () => {
     );
 };
 
-export default CreateDBUser;
+export default ManageDBUser;

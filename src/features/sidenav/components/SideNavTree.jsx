@@ -27,7 +27,7 @@ import BrokerMenu from "@/features/sidenav/components/menus/BrokerMenu.jsx";
 import useFetchBroker from "@/features/sidenav/hook/useFetchBroker.js";
 import useFetchLog from "@/features/sidenav/hook/useFetchLog.js";
 import UsersMenu from "@/features/sidenav/components/menus/UsersMenu.jsx";
-import CreateDBUser from "@/features/sidenav/components/modal/CreateDBUser.jsx";
+import ManageDBUser from "@/features/sidenav/components/modal/ManageDBUser.jsx";
 import UserMenu from "@/features/sidenav/components/menus/UserMenu.jsx";
 
 
@@ -200,9 +200,6 @@ const SideNavTree = ()=>{
 
     return (
         <div className={styles.layout}>
-            <CreateDBUser/>
-            <BackupModal/>
-            <QueryPlanModal/>
             <DeleteConfirmAction {...openDeleteConfirm} onClose={onCloseModal} onOK={onDeleteModal}/>
             <div className={styles.alias}>
                 {activeHost.alias }

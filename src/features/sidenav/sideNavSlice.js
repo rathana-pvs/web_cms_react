@@ -5,6 +5,9 @@ const initialState = {
     backupModal: {open: false},
     queryPlanModal: {open: false},
     createDBUser: {open: false},
+    paramDump: {open: false},
+    planDump: {open: false},
+    optimizeDB: {open: false},
 
 }
 
@@ -23,11 +26,21 @@ const sideNavSlice = createSlice({
         },
         setCreateDBUser: (state, action) => {
             state.createDBUser = action.payload
+        },
+        setParamDump: (state, action) => {
+            state.paramDump = action.payload
+        },
+        setPlanDump: (state, action) => {
+            state.planDump = action.payload
+        },
+        setOptimizeDB: (state, action) => {
+            state.optimizeDB = action.payload
         }
 
     },
 })
 
 export const { setHostHeight, setBackupModal,
-    setQueryPlanModal, setCreateDBUser} = sideNavSlice.actions
+    setQueryPlanModal, setCreateDBUser,
+    setParamDump, setPlanDump, setOptimizeDB} = sideNavSlice.actions
 export default sideNavSlice.reducer

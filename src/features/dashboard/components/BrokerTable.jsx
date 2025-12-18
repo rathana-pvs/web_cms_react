@@ -82,9 +82,8 @@ const BrokerTable = (props) =>{
         try {
             const res = await getBrokersAPI(activeHost);
             const newBrokers = res.result?.map(item => getBrokerFormat(item)) || [];
-
             const responses = await Promise.all(
-                newBrokers.map(b => getBrokerStatusAPI(activeHost, { bname: b.name }))
+                newBrokers.map(b => getBrokerStatusAPI(activeHost, b))
             );
 
             const dataSource = responses

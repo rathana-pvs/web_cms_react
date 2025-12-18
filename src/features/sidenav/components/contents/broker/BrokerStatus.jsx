@@ -125,7 +125,6 @@ const BrokerStatus = (props)=>{
     const [statusLoading, setStatusLoading] = useState(true);
     const getBrokerInfo = async () => {
         const tab = tabs.find(res=>res.key === props.uniqueKey)
-        console.log(tab);
         const response = await getBrokerStatusAPI(activeHost, tab)
         if(response.success){
             const newBrokerStatus = response.result.map(res=>{
