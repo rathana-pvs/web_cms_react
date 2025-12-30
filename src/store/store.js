@@ -6,7 +6,7 @@ import databaseSlice from "../features/domain/database/databaseSlice.js";
 import brokerSlice from "../features/domain/broker/brokerSlice.js";
 import tabSlice, {initialTabState} from '../shared/slice/tabSlice.js'
 import globalSlice from "@/shared/slice/globalSlice.js";
-import userSlice from "@/features/domain/user/userSlice.js";
+import userSlice from "@/features/domain/DBUser/DBUserSlice.js";
 import appBarSlice from "@/features/appbar/appBarSlice.js";
 
 const appReducer = combineReducers({
@@ -17,7 +17,7 @@ const appReducer = combineReducers({
     host: hostSlice,
     database: databaseSlice,
     broker: brokerSlice,
-    user: userSlice,
+    DBUser: userSlice,
     tab: tabSlice
 });
 

@@ -4,8 +4,8 @@ const initialState = {
     users: [],
 }
 
-const userSlice = createSlice({
-    name: 'user',
+const DBUserSlice = createSlice({
+    name: 'DBUser',
     initialState,
     reducers: {
         setDBUsers: (state, action) => {
@@ -14,5 +14,5 @@ const userSlice = createSlice({
     },
 })
 
-export const { setDBUsers} = userSlice.actions
-export default userSlice.reducer
+export const { setDBUsers} = DBUserSlice.actions
+export default DBUserSlice.reducer

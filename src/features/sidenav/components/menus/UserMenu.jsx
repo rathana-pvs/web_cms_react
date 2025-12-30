@@ -5,7 +5,7 @@ import {
 import {nanoid} from "nanoid";
 import {useDispatch, useSelector} from "react-redux";
 
-import {deleteDBUserAPI} from "@/features/domain/user/userAPI.js";
+import {deleteDBUserAPI} from "@/features/domain/DBUser/DBUserAPI.js";
 import {setCreateDBUser} from "@/features/sidenav/sideNavSlice.js";
 
 const UserMenu = ({node, clientX, clientY, open, onClose})=>{

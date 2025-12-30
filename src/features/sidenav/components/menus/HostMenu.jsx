@@ -7,6 +7,7 @@ import {deleteHostAPI} from "@/features/domain/host/hostAPI.js";
 import {setHosts, setOpenHostVersion} from "@/features/domain/host/hostSlice.js";
 import {setBuffering} from "@/shared/slice/globalSlice.js";
 import {setHostConnection} from "@/features/appbar/appBarSlice.js";
+import {setChangeCMPassword} from "@/features/sidenav/sideNavSlice.js";
 
 
 
@@ -40,12 +41,15 @@ const HostMenu = ({host, clientX, clientY, open, onClose})=>{
             onClick: ()=> handleDelete()
 
         },
-        // {
-        //     label: 'Change Manager\'s Password',
-        //     key: nanoid(4),
-        //     icon: <DeleteOutlined style={{color: 'var(--danger-color)'}} />,
-        //
-        // },
+        {
+            label: 'Change Manager\'s Password',
+            key: nanoid(4),
+            icon: <DeleteOutlined style={{color: 'var(--danger-color)'}} />,
+            onClick: ()=>{
+                dispatch(setChangeCMPassword({open: true, host}))
+            }
+
+        },
         {
             label: 'Server Version',
             key: nanoid(4),

@@ -14,6 +14,11 @@ import Profile from "@/features/appbar/components/modal/Profile.jsx";
 import UpdatePassword from "@/features/appbar/components/modal/UpdatePassword.jsx";
 import DeleteConfirmAction from "@/components/common/modal/DeleteConfirmAction/DeleteConfirmAction.jsx";
 import {deleteAuthUserAPI} from "@/features/auth/authAPI.js";
+import ImportHost from "@/features/appbar/components/modal/ImportHost.jsx";
+import ExportHost from "@/features/appbar/components/modal/ExportHost.jsx";
+import BrokerLogParser from "@/features/appbar/components/modal/BrokerLogParser.jsx";
+import Tool from "@/features/appbar/components/Tool.jsx";
+import ManageCMUser from "@/features/appbar/components/modal/ManageCMUser.jsx";
 
 const AppBar = () => {
     const dispatch = useDispatch();
@@ -59,7 +64,7 @@ const AppBar = () => {
         <div className={styles.layout}>
             <div className={styles.layout__menu}>
                 <File/>
-                {/*/!*<ToolMenu/>*!/*/}
+                <Tool/>
                 <Action/>
                 <Help/>
 
@@ -82,7 +87,7 @@ const AppBar = () => {
                     </Dropdown>
                 </div>
                 <div className={styles.user__nav__layout}>
-                    {/*<div className={styles.user__nav__title}>{user.id}</div>*/}
+                    {/*<div className={styles.user__nav__title}>{DBUser.id}</div>*/}
                     <Dropdown menu={{ items: menuItems }} trigger={['click']}>
                         <div className={styles.dropdown__menu} onClick={(e) => e.preventDefault()}>
                             <UserDeleteOutlined />
@@ -96,6 +101,10 @@ const AppBar = () => {
             <AboutCubrid/>
             <Profile/>
             <UpdatePassword/>
+            <ImportHost/>
+            <ExportHost/>
+            <BrokerLogParser/>
+            <ManageCMUser/>
 
         </div>
     )

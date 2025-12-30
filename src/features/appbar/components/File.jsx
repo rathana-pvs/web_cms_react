@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import DropdownMenu from "./DropdownMenu.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {setHostConnection} from "@/features/appbar/appBarSlice.js";
+import {setExportHost, setHostConnection, setImportHost} from "@/features/appbar/appBarSlice.js";
 
 
 
@@ -26,9 +26,15 @@ const File = () => {
         },
         {
             label: 'Export Host Info',
+            onClick: ()=>{
+                dispatch(setExportHost(true));
+            }
         },
         {
             label: 'Import Host Info',
+            onClick: () => {
+                dispatch(setImportHost(true));
+            }
         },
 
     ];

@@ -110,7 +110,7 @@ const Profile = () => {
             </Modal>
             <DeleteConfirmAction
                 title={"Delete User"}
-                content={"Are you sure you want to delete this user?"}
+                content={"Are you sure you want to delete this DBUser?"}
                 open={deleteUser}
                 onClose={() => setDeleteUser(false)}
                 onOK={() => onDeleteUser()}/>

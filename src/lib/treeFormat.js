@@ -49,7 +49,7 @@ export const getUserFormat =(item, node)=>{
         ...getTemplateFormat(node),
         title: item["@name"],
         type: "user",
-        icon: "fa-user success",
+        icon: "fa-DBUser success",
         isLeaf: true,
         ...item
     }

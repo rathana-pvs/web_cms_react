@@ -15,7 +15,7 @@ const columns = [
     },
     {
         title: 'User',
-        dataIndex: '@user',
+        dataIndex: '@DBUser',
         key: 'user',
     },
     {

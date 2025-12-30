@@ -6,6 +6,10 @@ const initialState = {
     aboutCubrid: false,
     profile: false,
     updatePassword: false,
+    exportHost: false,
+    importHost: false,
+    brokerLogParser: false,
+    manageCMUser: false,
 }
 
 const appBarSlice = createSlice({
@@ -23,10 +27,25 @@ const appBarSlice = createSlice({
         },
         setUpdatePassword: (state, action) => {
             state.updatePassword = action.payload;
+        },
+        setExportHost: (state, action) => {
+            state.exportHost = action.payload;
+        },
+        setImportHost: (state, action) => {
+            state.importHost = action.payload;
+        },
+        setBrokerLogParser: (state, action) => {
+            state.brokerLogParser = action.payload;
+        },
+        setManageCMUser: (state, action) => {
+            state.manageCMUser = action.payload;
         }
 
     },
 })
 
-export const {setHostConnection, setAboutCubrid, setUpdatePassword, setProfile} = appBarSlice.actions
+export const {setHostConnection,
+    setAboutCubrid, setUpdatePassword,
+    setProfile, setExportHost,
+    setImportHost, setBrokerLogParser, setManageCMUser} = appBarSlice.actions
 export default appBarSlice.reducer

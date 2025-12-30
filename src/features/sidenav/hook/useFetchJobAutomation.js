@@ -14,7 +14,7 @@ const useFetchJobAutomation = (node)=>{
     const {databases, backupInfo, queryPlans} = useSelector(state => state.database);
     const {refreshBackupHook} = useBackupAction();
     const {refreshQueryPlanHook} = useQueryPlanAction()
-    const {users} = useSelector(state => state.user);
+    const {users} = useSelector(state =>state.DBUser);
     const [subJob, setSubJob] = useState([]);
     const dispatch = useDispatch();
 

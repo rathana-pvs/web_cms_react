@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import DropdownMenu from "./DropdownMenu.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {setHostConnection} from "@/features/appbar/appBarSlice.js";
+import {setBrokerLogParser, setHostConnection, setManageCMUser} from "@/features/appbar/appBarSlice.js";
 
 
 
@@ -13,7 +13,16 @@ const Tool = () => {
 
     const menus = [
         {
-            label: ""
+            label: "Parse SQL Log from broker log",
+            onClick: () => {
+                dispatch(setBrokerLogParser(true))
+            }
+        },
+        {
+            label: "Edit User Management",
+            onClick: () => {
+                dispatch(setManageCMUser(true))
+            }
         }
 
     ];

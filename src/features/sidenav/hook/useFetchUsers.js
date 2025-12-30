@@ -1,14 +1,14 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getDBUsersAPI} from "@/features/domain/user/userAPI.js";
-import {setDBUsers} from "@/features/domain/user/userSlice.js";
+import {getDBUsersAPI} from "@/features/domain/DBUser/DBUserAPI.js";
+import {setDBUsers} from "@/features/domain/DBUser/DBUserSlice.js";
 import {getUserFormat} from "@/lib/treeFormat.js";
 
 
 const useFetchUsers = (node)=>{
     const {activeHost} = useSelector(state => state.host);
     const {databases} = useSelector(state => state.database);
-    const {users} = useSelector(state => state.user);
+    const {users} = useSelector(state =>state.DBUser);
     const dispatch = useDispatch();
 
     useEffect(()=>{

@@ -45,10 +45,10 @@ const menus = [
 const SideNavTree = ()=>{
     const [activeTree, setActiveTree] = useState(0)
     const {hostHeight} = useSelector(state=>state.sidenav);
-    const {databases, subDBSpaceFolder, DBSpaceTreeInfo} = useSelector(state => state.database)
+    const {databases} = useSelector(state => state.database)
     const {brokers} = useSelector(state => state.broker)
     const {activeHost} = useSelector(state => state.host)
-    const {users} = useSelector(state => state.user)
+    const {users} = useSelector(state =>state.DBUser)
     const [subDatabase, setSubDatabase] = useState([])
     const [subLogger, setSubLogger] = useState([]);
     const [menu, setMenu] = useState({open: false});

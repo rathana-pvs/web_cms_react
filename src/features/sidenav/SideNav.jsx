@@ -16,6 +16,7 @@ import QueryPlanModal from "@/features/sidenav/components/modal/QueryPlanModal/Q
 import ParamDump from "@/features/sidenav/components/modal/ManageDatabase/ParamDump.jsx";
 import PlanDump from "@/features/sidenav/components/modal/ManageDatabase/PlanDump.jsx";
 import OptimizeDB from "@/features/sidenav/components/modal/ManageDatabase/OptimizeDB.jsx";
+import ChangeCMPassword from "@/features/sidenav/components/modal/manageCMUser/ChangeCMPassword.jsx";
 
 
 const SideNav = () => {
@@ -29,9 +30,7 @@ const SideNav = () => {
             <ParamDump/>
             <PlanDump/>
             <OptimizeDB/>
-
-
-
+            <ChangeCMPassword/>
         <div className={styles.layout}>
             <div className={styles.top__menu}>
                 <div className={styles.mode__view}>

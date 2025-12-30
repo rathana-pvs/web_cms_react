@@ -19,8 +19,9 @@ export const addHostAPI = (payload)=>{
     })
 }
 
-export const updateHostAPI = async (server, payload) => {
-    return axios.put(`/host`, {...payload, hostUid: server.uid}).then(res => {
+export const updateHostAPI = async (host, payload) => {
+    const url =  `/host/${host.uid}`
+    return axios.put(url, payload).then(res => {
         if(res.status === 200) {
             return {...res, success: true};
         }
@@ -29,8 +30,9 @@ export const updateHostAPI = async (server, payload) => {
     })
 }
 
-export const deleteHostAPI = async (server) => {
-    return axios.delete(`/host`, {data:{hostUid: server.uid}}).then(res => {
+export const deleteHostAPI = async (host) => {
+    const url = `/host/${host.uid}`;
+    return axios.delete(url).then(res => {
         if(res.status === 200) {
             return {...res, success: true};
         }

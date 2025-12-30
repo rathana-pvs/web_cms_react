@@ -5,9 +5,9 @@ import {nanoid} from "nanoid";
 import Buffering from "@/components/common/Buffering/Buffering.jsx";
 import {setBuffering} from "@/shared/slice/globalSlice.js";
 import {isNotEmpty} from "@/lib/utils.js";
-import {addDBUserAPI, getDBUsersAPI, updateDBUserAPI} from "@/features/domain/user/userAPI.js";
+import {addDBUserAPI, getDBUsersAPI, updateDBUserAPI} from "@/features/domain/DBUser/DBUserAPI.js";
 import {setCreateDBUser} from "@/features/sidenav/sideNavSlice.js";
-import {setDBUsers} from "@/features/domain/user/userSlice.js";
+import {setDBUsers} from "@/features/domain/DBUser/DBUserSlice.js";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -15,7 +15,7 @@ const { TextArea } = Input;
 const ManageDBUser = () => {
     const {activeHost} = useSelector(state => state.host);
     const {databases} = useSelector(state => state.database);
-    const {users} = useSelector(state => state.user);
+    const {users} = useSelector(state=>state.DBUser);
     const {createDBUser} = useSelector(state=>state.sidenav)
     const [database, setDatabase] = useState({})
     const dispatch = useDispatch();
