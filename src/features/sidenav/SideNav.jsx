@@ -18,6 +18,7 @@ import PlanDump from "@/features/sidenav/components/modal/DatabaseInfo/PlanDump.
 import OptimizeDB from "@/features/sidenav/components/modal/DatabaseInfo/OptimizeDB.jsx";
 import ChangeCMPassword from "@/features/sidenav/components/modal/manageCMUser/ChangeCMPassword.jsx";
 import CompactDB from "@/features/sidenav/components/modal/DatabaseManagement/CompactDB.jsx";
+import CheckDB from "@/features/sidenav/components/modal/DatabaseManagement/CheckDB.jsx";
 
 
 const SideNav = () => {
@@ -33,6 +34,7 @@ const SideNav = () => {
             <OptimizeDB/>
             <ChangeCMPassword/>
             <CompactDB/>
+            <CheckDB/>
         <div className={styles.layout}>
             <div className={styles.top__menu}>
                 <div className={styles.mode__view}>

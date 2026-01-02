@@ -10,7 +10,7 @@ import {setBuffering} from "@/shared/slice/globalSlice.js";
 import {stopDatabaseAPI} from "@/features/domain/database/databaseAPI.js";
 import {data} from "framer-motion/m";
 import useDatabaseOperation from "@/features/sidenav/hook/useDatabaseOperation.js";
-import {setCompactDB, setOptimizeDB, setParamDump, setPlanDump} from "@/features/sidenav/sideNavSlice.js";
+import {setCheckDB, setCompactDB, setOptimizeDB, setParamDump, setPlanDump} from "@/features/sidenav/sideNavSlice.js";
 
 const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
     // const {activeServer, databases} = useSelector(state => state.treeReducer);
@@ -47,14 +47,15 @@ const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
                     key: nanoid(4),
                     disabled: true
                 },
-                {
-                    label: "Database Optimize",
-                    key: nanoid(4),
-                    disabled: node.status === "active",
-                    onClick: () => {
-                        dispatch(setOptimizeDB({open: true, node}));
-                    }
-                },
+                // {
+                //     label: "Database Optimize",
+                //     key: nanoid(4),
+                //     disabled: node.status === "active",
+                //
+                //     onClick: () => {
+                //         dispatch(setOptimizeDB({open: true, node}));
+                //     }
+                // },
                 {
                     label: "Compact Database",
                     key: nanoid(4),
@@ -65,18 +66,18 @@ const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
                 {
                     label: "Check Database",
                     key: nanoid(4),
-                    // onClick: ()=>{
-                    //     dispatch(setCheckDB({open: true, node}));
-                    // }
+                    onClick: ()=>{
+                        dispatch(setCheckDB({open: true, node}));
+                    }
                 },
-                {
-                    label: "Copy Database",
-                    key: nanoid(4),
-                    disabled: node.status === "active",
-                    // onClick: () => {
-                    //     dispatch(setCopyDB({open: true, node}));
-                    // }
-                },
+                // {
+                //     label: "Copy Database",
+                //     key: nanoid(4),
+                //     disabled: node.status === "active",
+                //     // onClick: () => {
+                //     //     dispatch(setCopyDB({open: true, node}));
+                //     // }
+                // },
 
                 {
                     label: "Create Database",

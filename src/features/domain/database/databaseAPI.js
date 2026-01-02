@@ -54,3 +54,12 @@ export const compactDBAPI = async (host, data) => {
     const response = await getResponse(host, payload)
     return {result: data.verbose === "y" ? response.log[0].line: [], success: true};
 }
+
+export const checkDBAPI = async (host, data) => {
+    const payload = {
+        task: "checkdb",
+        ...data
+    }
+    const response = await getResponse(host, payload)
+    return {result: response, success: true};
+}
