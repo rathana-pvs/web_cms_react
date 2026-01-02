@@ -13,10 +13,11 @@ import {useSelector} from "react-redux";
 import ManageDBUser from "@/features/sidenav/components/modal/ManageDBUser.jsx";
 import BackupModal from "@/features/sidenav/components/modal/BackupModal/BackupModal.jsx";
 import QueryPlanModal from "@/features/sidenav/components/modal/QueryPlanModal/QueryPlanModal.jsx";
-import ParamDump from "@/features/sidenav/components/modal/ManageDatabase/ParamDump.jsx";
-import PlanDump from "@/features/sidenav/components/modal/ManageDatabase/PlanDump.jsx";
-import OptimizeDB from "@/features/sidenav/components/modal/ManageDatabase/OptimizeDB.jsx";
+import ParamDump from "@/features/sidenav/components/modal/DatabaseInfo/ParamDump.jsx";
+import PlanDump from "@/features/sidenav/components/modal/DatabaseInfo/PlanDump.jsx";
+import OptimizeDB from "@/features/sidenav/components/modal/DatabaseInfo/OptimizeDB.jsx";
 import ChangeCMPassword from "@/features/sidenav/components/modal/manageCMUser/ChangeCMPassword.jsx";
+import CompactDB from "@/features/sidenav/components/modal/DatabaseManagement/CompactDB.jsx";
 
 
 const SideNav = () => {
@@ -31,6 +32,7 @@ const SideNav = () => {
             <PlanDump/>
             <OptimizeDB/>
             <ChangeCMPassword/>
+            <CompactDB/>
         <div className={styles.layout}>
             <div className={styles.top__menu}>
                 <div className={styles.mode__view}>

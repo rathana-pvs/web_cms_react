@@ -1,45 +1,49 @@
-import React, { useState} from "react";
-import {Modal,  Button,Checkbox} from "antd";
+import React, {useState} from "react";
+import {Modal, Button, Checkbox} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import styles from "../../../styles/ManageDatabae.module.css";
-
-import {getParamDumpAPI} from "@/features/domain/CMSConfig/CMSConfigAPI.js";
-import {setParamDump} from "@/features/sidenav/sideNavSlice.js";
+import styles from "@/features/sidenav/styles/Modal.module.css"
+import {getPlanDumpAPI} from "@/features/domain/CMSConfig/CMSConfigAPI.js";
 import {setBuffering} from "@/shared/slice/globalSlice.js";
+import {setPlanDump} from "@/features/sidenav/sideNavSlice.js";
 
+function bytesToMB(bytes) {
+    if (bytes === 0) return 0;
+    const mb = bytes / 1048576;
+    return parseFloat(mb.toFixed(0))
+}
 
-const ParamDump = (props) => {
+const PlanDump =()=>{
 
     const {activeHost} = useSelector(state => state.host);
-    const {paramDump} = useSelector(state => state.sidenav);
+    const {planDump} = useSelector(state => state.sidenav);
     const dispatch = useDispatch();
     const [server, setServer] = useState({});
+    const [checked, setChecked] = useState(false);
     const handleOk = async () => {
         dispatch(setBuffering(true));
-        const response = await getParamDumpAPI(activeHost, paramDump.node).finally(()=>{
-            dispatch(setBuffering(false));
-        })
+        const response = await getPlanDumpAPI(activeHost,{
+            dbname: planDump.node.title,
+            plandrop: checked ? 'y' : 'n'
+        }).finally(() => dispatch(setBuffering(false)));
         if(response.success) {
             Modal.success({
                 title: 'Success',
-                content: `Job Param Dump Cache - 
-                        ${paramDump.node.title + "@" + server.title} has been completed successfully`,
+                content: `Job Plan Dump Cache - 
+                        ${planDump.node.title + "@" + server.title} has been completed successfully`,
                 okText: "Close"
             })
             handleClose()
         }
     };
 
-
     const handleClose = () => {
-        dispatch(setParamDump({open: false}));
+        dispatch(setPlanDump({open: false}));
     }
-
 
     return (
         <Modal
-            title="Param Dump"
-            open={paramDump.open}
+            title="Plan Cache Dump"
+            open={planDump.open}
             footer={() => {
                 return (
                     <>
@@ -57,21 +61,22 @@ const ParamDump = (props) => {
         >
             <div style={{ maxHeight: '600px', overflowY: 'auto' }}>
                 <div className={styles.db__layout}>
-                    <div className={styles.text__title}>Database Name: {paramDump.node?.title}</div>
+                    <div className={styles.text__title}>Database Name: {planDump.node?.title}</div>
                 </div>
                 <div className={styles.db__layout}>
                     <div className="border__text">Description</div>
-                    <div> This utility is used to display information about the query plans saved (cached) on the server</div>
+                    <div> This utility displays current information of the parameters used in the server/client process</div>
 
                 </div>
                 <Checkbox
-                    disabled
+                    checked={checked}
+                    onChange={(e) => setChecked(e.target.checked)}
                 >
-                    Dump both clint and server parameters
+                    Drop all plans in server's cache
                 </Checkbox>
             </div>
         </Modal>
     );
 };
 
-export default ParamDump;
+export default PlanDump;

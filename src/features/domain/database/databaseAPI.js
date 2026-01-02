@@ -45,3 +45,12 @@ export const stopDatabaseAPI = async (host, db) => {
     const databases = getListDatabase(data);
     return { result: databases, success: true };
 }
+
+export const compactDBAPI = async (host, data) => {
+    const payload = {
+        task: "compactdb",
+        ...data
+    }
+    const response = await getResponse(host, payload)
+    return {result: data.verbose === "y" ? response.log[0].line: [], success: true};
+}

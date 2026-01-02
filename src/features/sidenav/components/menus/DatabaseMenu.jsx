@@ -10,7 +10,7 @@ import {setBuffering} from "@/shared/slice/globalSlice.js";
 import {stopDatabaseAPI} from "@/features/domain/database/databaseAPI.js";
 import {data} from "framer-motion/m";
 import useDatabaseOperation from "@/features/sidenav/hook/useDatabaseOperation.js";
-import {setOptimizeDB, setParamDump, setPlanDump} from "@/features/sidenav/sideNavSlice.js";
+import {setCompactDB, setOptimizeDB, setParamDump, setPlanDump} from "@/features/sidenav/sideNavSlice.js";
 
 const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
     // const {activeServer, databases} = useSelector(state => state.treeReducer);
@@ -58,9 +58,9 @@ const  DatabaseMenu = ({node, clientX, clientY, open, onClose}) =>{
                 {
                     label: "Compact Database",
                     key: nanoid(4),
-                    // onClick: () => {
-                    //     dispatch(setCompactDB({open: true, node}));
-                    // }
+                    onClick: () => {
+                        dispatch(setCompactDB({open: true, node}));
+                    }
                 },
                 {
                     label: "Check Database",

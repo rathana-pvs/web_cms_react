@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Modal, Form, Select, Button} from "antd";
-import styles from "@/features/sidenav/styles/ManageDatabae.module.css"
+import styles from "@/features/sidenav/styles/Modal.module.css"
 import {useDispatch, useSelector} from "react-redux";
 import {setBuffering} from "@/shared/slice/globalSlice.js";
 import {setOptimizeDB} from "@/features/sidenav/sideNavSlice.js";
