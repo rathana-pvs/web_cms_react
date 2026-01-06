@@ -63,3 +63,12 @@ export const checkDBAPI = async (host, data) => {
     const response = await getResponse(host, payload)
     return {result: response, success: true};
 }
+
+export const renameDBAPI = async (host, data) => {
+    const payload = {
+        task: "renamedb",
+        ...data
+    }
+    const response = await getResponse(host, payload)
+    return {result: response, success: true};
+}
